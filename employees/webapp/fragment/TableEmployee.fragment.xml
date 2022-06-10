@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Panel id="panelEmployees"> 
+        <Button id="btnShowCity" text="{i18n>showCity}" visible="{jsonModelConfig>/visibleBtnShowCity}" press="onShowCity"/>
+            <Button id="btnHideCity" text="{i18n>hideCity}" visible="{jsonModelConfig>/visibleBtnHideCity}" press="onHideCity"/>
+                <Table id="tableEmployee" items="{jsonEmployees>/}">
+                    <columns>
+                        <Column id="clm1" visible="{jsonModelConfig>/visibleID}">
+                            <header>
+                                <Label id="lbl1" text="{i18n>tableId}" />
+                            </header>
+                        </Column>
+                        <Column id="clm2"  visible="{jsonModelConfig>/visibleName}">
+                            <header>
+                                <Label id="lbl2" text="{i18n>tableName}" />
+                            </header>
+                        </Column>
+                        <Column id="clm3"  visible="{jsonModelConfig>/visibleCountry}">
+                            <header>
+                                <Label id="lbl3" text="{i18n>tableCountry}" />
+                            </header>
+                        </Column>
+                        <Column id="clm4"  visible="{jsonModelConfig>/visibleCity}">
+                            <header>
+                                <Label id="lbl4" text="{i18n>tableCity}" />
+                            </header>
+                        </Column>    
+                        <Column id="clm5" width="100px">
+                            <header>
+                                <Label id="lbl9" text="{i18n>tableShowDetails}" />
+                            </header>
+                        </Column>                                     
+                    </columns>
+                    <items>
+                        <!-- <ColumnListItem id="clmList" type="Active" press="showOrders"> -->
+                        <ColumnListItem id="clmList">
+                            <cells>
+                                <Label id= "lbl5" text="{jsonEmployees>EmployeeID}"/>
+                                <Label id= "lbl6" text="{jsonEmployees>LastName}, {jsonEmployees>FirstName}"/>
+                                <Label id= "lbl7" text="{jsonEmployees>Country}"/>
+                                <Label id= "lbl8" text="{jsonEmployees>City}"/>
+                                <core:Icon id="icon1" src="sap-icon://show" press="showOrders"></core:Icon>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            <HBox id="ordersTable"></HBox>
+        </Panel>
+</core:FragmentDefinition>
