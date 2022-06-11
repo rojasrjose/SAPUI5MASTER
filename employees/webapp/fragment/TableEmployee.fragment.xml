@@ -30,9 +30,8 @@
                             </header>
                         </Column>                                     
                     </columns>
-                    <items>
-                        <!-- <ColumnListItem id="clmList" type="Active" press="showOrders"> -->
-                        <ColumnListItem id="clmList">
+                    <items>                        
+                        <ColumnListItem id="clmList" type="Navigation" press="showEmployee">
                             <cells>
                                 <Label id= "lbl5" text="{jsonEmployees>EmployeeID}"/>
                                 <Label id= "lbl6" text="{jsonEmployees>LastName}, {jsonEmployees>FirstName}"/>

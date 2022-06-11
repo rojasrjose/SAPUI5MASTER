@@ -14,25 +14,7 @@ sap.ui.define([
         "use strict";
 
         function onInit() {
-            var oView = this.getView();
-
-            var oJSONModelEmployees = new JSONModel();
-            oJSONModelEmployees.loadData("./localService/mockdata/Employees.json", false);
-            oView.setModel(oJSONModelEmployees, "jsonEmployees");
-
-            var oJSONModelCountries = new JSONModel();
-            oJSONModelCountries.loadData("./localService/mockdata/Countries.json", false);
-            oView.setModel(oJSONModelCountries, "jsonCountries");
-
-            var oJSONModelConfig = new JSONModel({
-                visibleID: true,
-                visibleName: true,
-                visibleCountry: true,
-                visibleCity: false,
-                visibleBtnShowCity: true,
-                visibleBtnHideCity: false,
-            });
-            oView.setModel(oJSONModelConfig, "jsonModelConfig");
+            this._bus = sap.ui.getCore().getEventBus();
         };
 
         function on_Filter() {
@@ -111,11 +93,23 @@ sap.ui.define([
             this._oDialogOrders.open();
         };
 
-        function on_CloseOrders(){
+        function on_CloseOrders() {
             this._oDialogOrders.close();
         };
 
-        return Controller.extend("logaligroup.employees.controller.MainView", {
+        function show_Employee(oEvent) {
+            
+            //Get Selected Controller
+            var iconPressed = oEvent.getSource();
+            //Context from the model
+            var oContext = iconPressed.getBindingContext("jsonEmployees");
+            var path = oContext.getPath();
+
+            this._bus.publish("flexible", "showEmployee", path);
+
+        };
+
+        return Controller.extend("logaligroup.employees.controller.MasterEmployee", {
 
             onInit: onInit,
             onValidate: myCheck,
@@ -125,6 +119,7 @@ sap.ui.define([
             onShowCity: on_ShowCity,
             onHideCity: on_HideCity,
             showOrders: show_Orders,
-            onCloseOrders: on_CloseOrders
+            onCloseOrders: on_CloseOrders,
+            showEmployee: show_Employee
         });
     });
