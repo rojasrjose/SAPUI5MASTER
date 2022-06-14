@@ -9,18 +9,18 @@
         <Panel id="Pn1">
             <FlexBox id="FXB1" height="65px" alignItems="Center" justifyContent="Center">
                 <items>
-                    <Text id="T1" text="{jsonEmployees>LastName}, {jsonEmployees>FirstName}" class="boldText"/>
+                    <Text id="T1" text="{odataNorthwind>TitleOfCourtesy} {odataNorthwind>LastName} {odataNorthwind>FirstName}" class="boldText"/>
                 </items>
             </FlexBox>        
             <FlexBox id="FXB2" height="65px" alignItems="Start" justifyContent="SpaceBetween">
                 <items>
                     <VBox id="VB1">
                         <Text id="T2" text="{i18n>employeeID}" class="boldText sapUiTinyMargingEnd"/> 
-                        <Text id="T3" text ="{jsonEmployees>EmployeeID}"/>
+                        <Text id="T3" text ="{odataNorthwind>EmployeeID}"/>
                     </VBox>        
                     <VBox id="VB2">
                         <Text id="T4" text="{i18n>titleEmployee}" class="boldText sapUiTinyMargingEnd"/> 
-                        <Text id="T5" text ="{jsonEmployees>Title}"/>
+                        <Text id="T5" text ="{odataNorthwind>Title}"/>
                     </VBox>             
                 </items>
             </FlexBox>  
@@ -28,21 +28,21 @@
                 <items>
                     <HBox id="HB1">
                         <Text id="T6" text="{i18n>contryCode}" class="boldText sapUiTinyMarginBeginEnd"/> 
-                        <Text id="T7" text ="{jsonEmployees>Country}"/>
+                        <Text id="T7" text ="{odataNorthwind>Country}"/>
                         <layoutData>
                             <FlexItemData id="FI1" growFactor="2"/>                             
                         </layoutData>
                     </HBox>        
                     <HBox id="HB2">
                         <Text id="T8" text="{i18n>city}" class="boldText sapUiTinyMarginBeginEnd"/> 
-                        <Text id="T9" text ="{jsonEmployees>City}" />
+                        <Text id="T9" text ="{odataNorthwind>City}" />
                         <layoutData>
                             <FlexItemData id="FI2" growFactor="2"/>                             
                         </layoutData>
                     </HBox>     
                     <FlexBox id="FB4">
                         <Text id="T10" text="{i18n>postalCode}" class="boldText sapUiTinyMarginBeginEnd"/> 
-                        <Text id="T11" text ="{jsonEmployees>PostalCode}"/>
+                        <Text id="T11" text ="{odataNorthwind>PostalCode}"/>
                         <layoutData>
                             <FlexItemData id="FI3" growFactor="1"/>                             
                         </layoutData>
@@ -54,7 +54,7 @@
         <Panel id="Pn2" class="sapUiSizeCompact" backgroundDesign="Transparent">
             <headerToolbar>
                 <Toolbar id="Tbr1">
-                    <Title id="Tl1" text="{i18n>incidence} {= ${jsonEmployees>Country} !== 'US' ? ${i18n>europe} : ${i18n>us}}"/>
+                    <Title id="Tl1" text="{i18n>incidence} {= ${odataNorthwind>Country} !== 'USA' ? ${i18n>europe} : ${i18n>us}}"/>
                     <ToolbarSpacer id="TS1"/>
                     <Button id="Bt1" text="{i18n>createIncidence}" press="onCreateIncidence"></Button>
                 </Toolbar>

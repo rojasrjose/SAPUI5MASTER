@@ -22,6 +22,12 @@
       "destination": "ui5"
     },
     {
+       "source": "^/sap/opu/odata/sap/YSAPUI5_SRV_01/",        
+       "authenticationType": "none",
+       "csrfProtection": false,
+       "destination": "logaligroupERP"
+      },
+    {
       "source": "^(.*)$",
       "target": "$1",
       "service": "html5-apps-repo-rt",
