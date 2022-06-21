@@ -2,13 +2,13 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
+    "sap/ui/model/FilterOperator"   
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      * @param {typeof sap.ui.model.json.JSONModel} JSONModel
      * @param {typeof sap.ui.model.Filter} Filter
-     * @param {typeof sap.ui.model.FilterOperator} FilterOperator
+     * @param {typeof sap.ui.model.FilterOperator} FilterOperator     
      */
     function (Controller, JSONModel, Filter, FilterOperator) {
         "use strict";
@@ -40,20 +40,20 @@ sap.ui.define([
             oModel.setProperty("/CountryKey", "");
         };
 
-        function myCheck() {
-            var inputEmployee = this.byId("inputEmployee");
-            var valueEmployee = inputEmployee.getValue();
-
-            if (valueEmployee.length === 6) {
-                // inputEmployee.setDescription(oResourceBundle.getText("textOk"));
-                this.getView().byId("labelCountry").setVisible(true);
-                this.getView().byId("slCountry").setVisible(true);
-            } else {
-                // inputEmployee.setDescription(oResourceBundle.getText("textNotok"));    
-                this.getView().byId("labelCountry").setVisible(false);
-                this.getView().byId("slCountry").setVisible(false);
-            };
-        };
+        //function myCheck() {
+        //    var inputEmployee = this.byId("inputEmployee");
+        //    var valueEmployee = inputEmployee.getValue();
+        //
+        //    if (valueEmployee.length === 6) {
+        //        // inputEmployee.setDescription(oResourceBundle.getText("textOk"));
+        //        this.getView().byId("labelCountry").setVisible(true);
+        //        this.getView().byId("slCountry").setVisible(true);
+        //    } else {
+        //        // inputEmployee.setDescription(oResourceBundle.getText("textNotok"));    
+        //        this.getView().byId("labelCountry").setVisible(false);
+        //        this.getView().byId("slCountry").setVisible(false);
+        //    };
+        //};
 
         function show_PostalCode(oEvent) {
             var itemPressed = oEvent.getSource();
@@ -98,7 +98,7 @@ sap.ui.define([
         };
 
         function show_Employee(oEvent) {
-            
+
             //Get Selected Controller
             var iconPressed = oEvent.getSource();
             //Context from the model
@@ -106,13 +106,22 @@ sap.ui.define([
             var path = oContext.getPath();
 
             this._bus.publish("flexible", "showEmployee", path);
+        };
 
+        function to_OrderDetails(oEvent) {
+            
+            var orderID = oEvent.getSource().getBindingContext("odataNorthwind").getObject().OrderID;
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            
+            oRouter.navTo("RouteOrderDetails", {
+                OrderId : orderID
+            });
         };
 
         return Controller.extend("logaligroup.employees.controller.MasterEmployee", {
 
             onInit: onInit,
-            onValidate: myCheck,
+            //onValidate: myCheck,
             onFilter: on_Filter,
             onClearFilter: on_ClearFilter,
             showPostalCode: show_PostalCode,
@@ -120,6 +129,7 @@ sap.ui.define([
             onHideCity: on_HideCity,
             showOrders: show_Orders,
             onCloseOrders: on_CloseOrders,
-            showEmployee: show_Employee
+            showEmployee: show_Employee,
+            toOrderDetails: to_OrderDetails
         });
     });
