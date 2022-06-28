@@ -24,7 +24,7 @@
       "env": {
         "FIORI_TOOLS_UI5_URI": "https://ui5.sap.com",
         "FIORI_TOOLS_BACKEND_CONFIG": "[{\"destination\":\"Northwind\",\"path\":\"/v2\"}, {\"destination\":\"logaligroupERP\",\"path\":\"/sap\"}]",
-        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false",
+//        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false",
         "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/logali/employees\"}"
       }
     }

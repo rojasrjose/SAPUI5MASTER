@@ -39,10 +39,36 @@ sap.ui.define([
             signature.clear();
         };
 
+        function factory_OrderDetails(listId, oContext){
+            var contextObject = oContext.getObject();
+            contextObject.Currency = "EUR";
+
+            var unitsInStock = oContext.getModel().getProperty("/Products(" + contextObject.ProductID + ")/UnitsInStock");
+
+            if (contextObject.Quantity <= unitsInStock){
+                var objectListItems = new sap.m.ObjectListItem({
+                    title : "{odataNorthwind>/Products(" + contextObject.ProductID + ")/ProductName} ({odataNorthwind>Quantity})",
+                    number : "{parts: [ {path: 'odataNorthwind>UnitPrice'},{path: 'odataNorthwind>Currency'}], type:'sap.ui.model.type.Currency', formatOptions: {showMeasure: false}}",
+                    numberUnit : "{odataNorthwind>Currency}"
+                });
+                return objectListItems;
+            }else{
+                var customListItem = new sap.m.CustomListItem({
+                    content: [
+                       new sap.m.Bar({
+                           contentLeft: new sap.m.Label({text: "{odataNorthwind>/Products(" + contextObject.ProductID + ")/ProductName} ({odataNorthwind>Quantity})"}),
+                           contentMiddle: new sap.m.ObjectStatus({text:"{i18n>availableStock} {odataNorthwind>/Products(" + contextObject.ProductID + ")/UnitsInStock}", state: "Error"}),
+                           contentRight:  new sap.m.Label({text: "{parts: [{path: 'odataNorthwind>UnitPrice'},{path: 'odataNorthwind>Currency'}], type: 'sap.ui.model.type.Currency'}"})
+                       })     
+                    ]
+                });
+                return  customListItem;
+            }
+        };
         return Controller.extend("logaligroup.employees.controller.OrderDetails", {            
             onInit: on_Init,
             onBack: on_Back,
-            onclearSignature: on_clearSignature
-            
+            onclearSignature: on_clearSignature,
+            factoryOrderDetails: factory_OrderDetails            
         });
     });

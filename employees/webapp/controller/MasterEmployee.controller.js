@@ -1,5 +1,5 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    "logaligroup/employees/controller/Base.controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator"   
@@ -10,7 +10,7 @@ sap.ui.define([
      * @param {typeof sap.ui.model.Filter} Filter
      * @param {typeof sap.ui.model.FilterOperator} FilterOperator     
      */
-    function (Controller, JSONModel, Filter, FilterOperator) {
+    function (Base, JSONModel, Filter, FilterOperator) {
         "use strict";
 
         function onInit() {
@@ -108,17 +108,7 @@ sap.ui.define([
             this._bus.publish("flexible", "showEmployee", path);
         };
 
-        function to_OrderDetails(oEvent) {
-            
-            var orderID = oEvent.getSource().getBindingContext("odataNorthwind").getObject().OrderID;
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            
-            oRouter.navTo("RouteOrderDetails", {
-                OrderId : orderID
-            });
-        };
-
-        return Controller.extend("logaligroup.employees.controller.MasterEmployee", {
+        return Base.extend("logaligroup.employees.controller.MasterEmployee", {
 
             onInit: onInit,
             //onValidate: myCheck,
@@ -129,7 +119,6 @@ sap.ui.define([
             onHideCity: on_HideCity,
             showOrders: show_Orders,
             onCloseOrders: on_CloseOrders,
-            showEmployee: show_Employee,
-            toOrderDetails: to_OrderDetails
+            showEmployee: show_Employee
         });
     });
