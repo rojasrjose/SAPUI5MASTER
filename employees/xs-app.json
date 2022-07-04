@@ -1,5 +1,5 @@
 {
-  "welcomeFile": "/index.html",
+  "welcomeFile": "logaligroupemployees", 
   "authenticationMethod": "route",
   "routes": [
     {
